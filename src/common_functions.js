@@ -7,10 +7,10 @@ function test_response_200_json() {
             response.should.have.status(200);
         });
         it('should return a json response', () => {
-            response.should.be.json
+            response.should.be.json;
         });
     });
-};
+}
 
 function test_response_400_json() {
     describe("invalid json", () => {
@@ -18,7 +18,7 @@ function test_response_400_json() {
             response.should.have.status(200);
         });
         it('should return a json response', () => {
-            response.should.be.json
+            response.should.be.json;
         });
     });
 }
