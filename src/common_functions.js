@@ -17,8 +17,19 @@ function test_response_200_text() {
         it('should return a 200 response', () => {
             response.should.have.status(200);
         });
-        it('should return a json response', () => {
+        it('should return a text response', () => {
             response.should.be.text;
+        });
+    });
+}
+
+function test_response_200_javascript() {
+    describe("valid json", () => {
+        it('should return a 200 response', () => {
+            response.should.have.status(200);
+        });
+        it('should return a javascript response', () => {
+            response.should.be.javascript;
         });
     });
 }
