@@ -39,7 +39,7 @@ function test_response_200_javascript() {
     });
 }
 
-function test_response_400_json(error_message) {
+function test_response_400_json(errorMessage) {
     describe("invalid json", () => {
         it('should return a 400 response', () => {
             response.should.have.status(400);
