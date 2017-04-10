@@ -1,5 +1,5 @@
 /* 
-Version Beta 0.0.1
+Version Beta 0.0.2
 */
 function test_response_200_json() {
     describe("valid json", () => {
@@ -8,6 +8,11 @@ function test_response_200_json() {
         });
         it('should return a json response', () => {
             response.should.be.json;
+        });
+        it('should not have an error', () => {
+            expect(response.body.response, "Error Message: " 
+                + response.body.response.error + "\nStack Trace: " 
+                + response.body.response.stack + "\n").to.not.have.property('error'); 
         });
     });
 }
@@ -34,7 +39,7 @@ function test_response_200_javascript() {
     });
 }
 
-function test_response_400_json() {
+function test_response_400_json(error_message) {
     describe("invalid json", () => {
         it('should return a 400 response', () => {
             response.should.have.status(400);
@@ -42,6 +47,12 @@ function test_response_400_json() {
         it('should return a json response', () => {
             response.should.be.json;
         });
+        if (errorMessage !== null && errorMessage !== undefined) {
+            it('should have error message ' + errorMessage, () => {
+                expect(response.body.response, "Stack Trace: " + response.body.response.stack + "\n").to.have.property('error')
+                .that.deep.equal(errorMessage);
+            });
+        }
     });
 }
 
@@ -52,6 +63,10 @@ function test_response_401_json() {
         });
         it('should return a json response', () => {
             response.should.be.json;
+        });
+        it('should have unauthenticated error response', () => {
+            expect(response.body.response, "Stack Trace: " + response.body.response.stack + "\n").to.have.property('error')
+            .that.deep.equal("Not Authenticated");
         });
     });
 }
