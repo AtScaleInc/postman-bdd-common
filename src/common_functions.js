@@ -70,3 +70,20 @@ function test_response_401_json() {
         });
     });
 }
+
+function test_response_403_json(errorMessage) {
+    describe("invalid json", () => {
+        it('should return a 403 response', () => {
+            response.should.have.status(400);
+        });
+        it('should return a json response', () => {
+            response.should.be.json;
+        });
+        if (errorMessage !== null && errorMessage !== undefined) {
+            it('should have error message ' + errorMessage, () => {
+                expect(response.body.response, "Stack Trace: " + response.body.response.stack + "\n").to.have.property('error')
+                .that.deep.equal(errorMessage);
+            });
+        }
+    });
+}
