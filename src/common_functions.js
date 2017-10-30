@@ -34,7 +34,7 @@ function test_response_200_javascript() {
             response.should.have.status(200);
         });
         it('should return a javascript response', () => {
-            response.should.be.javascript;
+            response.should.have.header('content-type', 'application/javascript;charset=utf-8');
         });
     });
 }
