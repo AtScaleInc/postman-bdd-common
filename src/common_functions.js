@@ -1,5 +1,5 @@
 /* 
-Version Beta 0.0.2
+Version Beta 1.1
 */
 function test_response_200_json() {
     describe("valid json", () => {
@@ -64,16 +64,52 @@ function test_response_401_json() {
         it('should return a json response', () => {
             response.should.be.json;
         });
-        it('should have unauthenticated error response', () => {
-            expect(response.body.response, "Stack Trace: " + response.body.response.stack + "\n").to.have.property('error')
-            .that.deep.equal("Not Authenticated");
-        });
+        if (errorMessage !== null && errorMessage !== undefined) {
+            it('should have error message ' + errorMessage, () => {
+                expect(response.body.response, "Stack Trace: " + response.body.response.stack + "\n").to.have.property('error')
+                .that.deep.equal(errorMessage);
+            });
+        }
     });
 }
 
 function test_response_403_json(errorMessage) {
     describe("invalid json", () => {
         it('should return a 403 response', () => {
+            response.should.have.status(400);
+        });
+        it('should return a json response', () => {
+            response.should.be.json;
+        });
+        if (errorMessage !== null && errorMessage !== undefined) {
+            it('should have error message ' + errorMessage, () => {
+                expect(response.body.response, "Stack Trace: " + response.body.response.stack + "\n").to.have.property('error')
+                .that.deep.equal(errorMessage);
+            });
+        }
+    });
+}
+
+function test_response_500_json(errorMessage) {
+    describe("invalid json", () => {
+        it('should return a 500 response', () => {
+            response.should.have.status(500);
+        });
+        it('should return a json response', () => {
+            response.should.be.json;
+        });
+        if (errorMessage !== null && errorMessage !== undefined) {
+            it('should have error message ' + errorMessage, () => {
+                expect(response.body.response, "Stack Trace: " + response.body.response.stack + "\n").to.have.property('error')
+                .that.deep.equal(errorMessage);
+            });
+        }
+    });
+}
+
+function test_response_400_json(errorMessage) {
+    describe("invalid json", () => {
+        it('should return a 400 response', () => {
             response.should.have.status(400);
         });
         it('should return a json response', () => {
