@@ -1,6 +1,6 @@
 # postman-bdd-common
 
-URL : `https://rawgit.com/AtScaleInc/postman-bdd-common/1.1/src/common_functions.js`
+URL : `https://rawgit.com/AtScaleInc/postman-bdd-common/1.1.1/src/common_functions.js`
 
 ### Using the functions in postman
   - Call the url

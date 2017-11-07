@@ -1,5 +1,5 @@
 /* 
-Version Beta 1.1
+Version 1.1.1
 */
 function test_response_200_json() {
     describe("valid json", () => {
@@ -56,7 +56,7 @@ function test_response_400_json(errorMessage) {
     });
 }
 
-function test_response_401_json() {
+function test_response_401_json(errorMessage) {
     describe("invalid json", () => {
         it('should return a 401 response', () => {
             response.should.have.status(401);
