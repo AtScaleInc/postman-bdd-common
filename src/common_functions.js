@@ -90,7 +90,7 @@ function test_response_403_json(errorMessage) {
 function test_response_404_json(errorMessage) {
     describe("invalid json", () => {
         it('should return a 404 response', () => {
-            response.should.have.status(400);
+            response.should.have.status(404);
         });
         it('should return a json response', () => {
             response.should.be.json;
