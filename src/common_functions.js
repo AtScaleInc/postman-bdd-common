@@ -7,9 +7,11 @@ function test_response_200_json() {
             response.should.be.json;
         });
         it('should not have an error', () => {
-            expect(response.body.response, "Error Message: " 
+            if (response.body.reponse !== undefined) {
+                expect(response.body.response, "Error Message: " 
                 + response.body.response.error + "\nStack Trace: " 
-                + response.body.response.stack + "\n").to.not.have.property('error'); 
+                + response.body.response.stack + "\n").to.not.have.property('error');
+            } 
         });
     });
 }
